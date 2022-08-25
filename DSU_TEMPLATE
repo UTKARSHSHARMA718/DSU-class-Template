@@ -1,0 +1,41 @@
+class UnionFind{
+        
+        int parent[];
+        int rank[];
+        
+        public UnionFind(int n){
+            parent=new int[n];
+            rank=new int[n];
+        }
+        
+        
+        public void union(int u,int v){
+            
+            int parentU=find(u);
+            int parentV=find(v);
+            
+            
+            if(rank[u]>rank[v]){
+                parent[v]=u;
+            }
+            else if(rank[u]<rank[v]){
+                parent[u]=v;
+            }
+            else{
+                parent[v]=u;
+                rank[u]++;
+            }
+                    
+        }
+        
+        
+        public int find(int node){
+            
+            if(parent[node]==node){
+                return node;
+            }
+            
+            return parent[node]=find(parent[node]);
+            
+        }
+    }
