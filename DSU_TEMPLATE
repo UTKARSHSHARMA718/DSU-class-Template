@@ -6,6 +6,10 @@ class UnionFind{
         public UnionFind(int n){
             parent=new int[n];
             rank=new int[n];
+            
+            for(int i=0;i<n;i++){
+                parent[i]=i;
+            }
         }
         
         
@@ -15,17 +19,18 @@ class UnionFind{
             int parentV=find(v);
             
             
-            if(rank[u]>rank[v]){
-                parent[v]=u;
+            if(rank[parentU]>rank[parentV]){
+                parent[parentV]=parentU;
             }
-            else if(rank[u]<rank[v]){
-                parent[u]=v;
+            else if(rank[parentU]<rank[parentV]){
+                parent[parentU]=parentV;
             }
             else{
-                parent[v]=u;
-                rank[u]++;
+                parent[parentV]=parentU;
+                rank[parentU]++;
             }
-                    
+             
+
         }
         
         
@@ -38,4 +43,5 @@ class UnionFind{
             return parent[node]=find(parent[node]);
             
         }
+        
     }
